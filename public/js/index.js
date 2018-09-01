@@ -9,10 +9,10 @@ socket.on('connect', function () {
 //     text: 'This is arthur'
 //   });
 
-  socket.emit('createMessage', {
-    from: 'Arthur',
-    message: 'wassup'
-  })
+  // socket.emit('createMessage', {
+  //   from: 'Arthur',
+  //   message: 'wassup'
+  // });
 });
 
 socket.on('newMessage', function (message) {
@@ -23,7 +23,7 @@ socket.on('disconnect', function () {
   console.log('Disconnected from server');
 });
 
- 
+
 
 //
 // socket.on('newEmail', function (email) {
