@@ -4,6 +4,13 @@ var socket = io();
 socket.on('connect', function () {
   console.log('Connected to server');
 
+  socket.on('welcome', function (message) {
+    console.log(message);
+  });
+
+  socket.on('userJoined', function (message) {
+    console.log(message);
+  });
 //   socket.emit('createEmail', {
 //     to: 'jen@example.com',
 //     text: 'This is arthur'
