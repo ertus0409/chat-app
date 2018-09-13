@@ -10,8 +10,6 @@
 //getUser(id)
 //getUserList(room)
 
-const _ = require('lodash');
-
 class Users {
   constructor () {
     this.users = [];
