@@ -1,6 +1,7 @@
 // const moment = require('moment');
 var socket = io();
 
+//Page scrolls down as new messages are recieved
 function scrollToBottom() {
   //selectors
   var messages = jQuery('#messages');
@@ -11,13 +12,12 @@ function scrollToBottom() {
   var scrollHeight = messages.prop('scrollHeight');
   var newMessageHeight = newMessage.innerHeight();
   var lastMessageHeight = newMessage.prev().innerHeight();
-
-
   if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
     messages.scrollTop(scrollHeight);
   }
 }
 
+//Connect
 socket.on('connect', function () {
   var params = jQuery.deparam(window.location.search);
 
@@ -30,8 +30,18 @@ socket.on('connect', function () {
     }
   });
 });
+//Disconnect
 socket.on('disconnect', function () {
   console.log('Disconnected from server');
+});
+
+//UserList
+socket.on('updateUserList', function (users) {
+  var ol = jQuery('<ol></ol>');
+  users.forEach(function(user) {
+    ol.append(jQuery('<li></li>').text(user));
+  });
+  jQuery('#users').html(ol);
 });
 
 
