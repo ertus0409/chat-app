@@ -66,10 +66,11 @@ socket.on('newMessage', function (message) {
 jQuery('#message-form').on('submit', function (e) {
   //Prevent default setting(page reloads when send tapped)
   e.preventDefault();
-  var messageTextbox = jQuery('[name=message]')
   //Collecting data from index.html and sending it to server
+  var messageTextbox = jQuery('[name=message]')
+  var params = jQuery.deparam(window.location.search);
   socket.emit('createMessage', {
-    from: 'User',
+    from: params.name,
     text: messageTextbox.val()
   }, function () {
     messageTextbox.val('')
